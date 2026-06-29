@@ -12,7 +12,7 @@ export default defineConfig({
       fileName: (format) => `cvm-comp-v5-ui.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'react-dom', 'react-select', 'react-select/async', 'react-datepicker'],
+      external: ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'react-dom', 'react-select', 'react-select/async', 'react-datepicker', 'react-hot-toast', 'lucide-react'],
       output: {
         globals: {
           react: 'React',
@@ -22,6 +22,8 @@ export default defineConfig({
           'react-select': 'Select',
           'react-select/async': 'AsyncSelect',
           'react-datepicker': 'DatePicker',
+          'react-hot-toast': 'ReactHotToast',
+          'lucide-react': 'LucideReact',
         },
       },
     },

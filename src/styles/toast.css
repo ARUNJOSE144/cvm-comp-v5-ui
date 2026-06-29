@@ -1,0 +1,59 @@
+/* =================================================================
+   cvm-comp-v5-ui — AppToaster styles (react-hot-toast)
+   ================================================================= */
+
+@keyframes toastProgress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+.toast-wrap {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  max-width: 360px;
+  min-width: 260px;
+}
+.toast-wrap--success { background: #22c55e; }
+.toast-wrap--error   { background: #ef4444; }
+
+.toast-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.toast-message {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 16px;
+  line-height: 1;
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+.toast-progress-track {
+  height: 3px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.toast-progress-bar {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  animation: toastProgress 4s linear forwards;
+}
