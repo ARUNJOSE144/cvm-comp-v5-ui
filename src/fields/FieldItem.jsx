@@ -354,8 +354,23 @@ const FieldItem = (props) => {
           </div>
         );
 
-      case FIELD_TYPES.FILE_UPLOAD:
-        return null;
+      case FIELD_TYPES.FILE_UPLOAD: {
+        const fileName = props.value?.name || props.value || '';
+        return (
+          <label className="gn-file-upload">
+            <input
+              type="file"
+              accept={props.accept}
+              disabled={!!props.disabled}
+              onChange={e => props.onChange && props.onChange(e.target.files?.[0] || null)}
+            />
+            <span className="gn-file-upload-btn">Choose File</span>
+            <span className={`gn-file-upload-name${fileName ? ' gn-has-file' : ''}`}>
+              {fileName || (props.placeholder || 'No file chosen')}
+            </span>
+          </label>
+        );
+      }
 
       default:
         return (

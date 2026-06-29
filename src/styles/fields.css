@@ -709,6 +709,66 @@ textarea.gn-form-control {
 }
 
 /* ════════════════════════════════════════════════════════════════════
+   File upload
+   ════════════════════════════════════════════════════════════════════ */
+.gn-file-upload {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 34px;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+  background: #FFFFFF;
+}
+
+.gn-file-upload input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gn-file-upload-btn {
+  flex-shrink: 0;
+  height: 100%;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  background: #F5F5F5;
+  border-right: 1px solid #DCDCDC;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6D6D6D;
+  white-space: nowrap;
+}
+
+.gn-file-upload:hover .gn-file-upload-btn {
+  background: #EBEBEB;
+}
+
+.gn-file-upload-name {
+  flex: 1;
+  padding: 0 10px;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #AFAFAF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gn-file-upload-name.gn-has-file {
+  color: #1D1D1D;
+  font-weight: 500;
+}
+
+/* ════════════════════════════════════════════════════════════════════
    Search-box-icon widget
    ════════════════════════════════════════════════════════════════════ */
 .gn-select-modal {
