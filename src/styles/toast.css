@@ -1,59 +1,110 @@
 /* =================================================================
-   cvm-comp-v5-ui — AppToaster styles (react-hot-toast)
+   cvm-comp-v5-ui — AppToaster  (Figma-aligned white-card design)
    ================================================================= */
 
-@keyframes toastProgress {
+@keyframes gnToastProgress {
   from { width: 100%; }
   to   { width: 0%; }
 }
 
-.toast-wrap {
-  position: relative;
-  overflow: hidden;
+/* Card shell */
+.gn-toast {
   display: flex;
   flex-direction: column;
-  color: #ffffff;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  max-width: 360px;
-  min-width: 260px;
+  width: 400px;
+  background: #FFFFFF;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px 10px 4px 4px;
+  overflow: hidden;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
-.toast-wrap--success { background: #22c55e; }
-.toast-wrap--error   { background: #ef4444; }
 
-.toast-body {
+/* Body area */
+.gn-toast__body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 16px;
+  gap: 5px;
+}
+
+/* Icon row: bell left, close right */
+.gn-toast__top-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
+  justify-content: space-between;
+  height: 16px;
 }
 
-.toast-message {
-  flex: 1;
-  line-height: 1.4;
-}
-
-.toast-close {
+/* Close × button */
+.gn-toast__close {
+  appearance: none;
   background: none;
   border: none;
-  color: #ffffff;
   cursor: pointer;
-  padding: 0 2px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1;
-  opacity: 0.75;
-  flex-shrink: 0;
+  color: #6D6D6D;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.gn-toast__close:hover { color: #1D1D1D; }
+
+/* Heading + description block */
+.gn-toast__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.toast-progress-track {
-  height: 3px;
-  background: rgba(0, 0, 0, 0.15);
+.gn-toast__heading {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: #1D1D1D;
 }
 
-.toast-progress-bar {
-  height: 100%;
-  background: rgba(255, 255, 255, 0.4);
-  animation: toastProgress 4s linear forwards;
+.gn-toast__description {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.01em;
+  color: #6D6D6D;
+}
+
+/* Action text link */
+.gn-toast__action {
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0099FF;
+  padding: 0;
+  margin-top: 5px;
+  text-align: left;
+}
+.gn-toast__action:hover { text-decoration: underline; }
+
+/* Progress bar */
+.gn-toast__progress-track {
+  position: relative;
+  height: 4px;
+  background: #EDEDED;
+  border-radius: 0px 0px 4px 4px;
+}
+
+.gn-toast__progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #0F7931;
+  border-radius: 0px 4px 4px 4px;
+  animation: gnToastProgress 4s linear forwards;
 }

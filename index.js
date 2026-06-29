@@ -19,4 +19,4 @@ export { default as MiniPopup }                              from './src/popup/M
 export { default as BasicAlert }                             from './src/popup/Alert';
 export { POPUP_ALIGN }                                       from './src/popup/PopupTypes';
 
-export { default as AppToaster }                             from './src/toaster/AppToaster';
+export { default as AppToaster, gnToast }                    from './src/toaster/AppToaster';
