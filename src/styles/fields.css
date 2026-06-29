@@ -1,0 +1,504 @@
+/* =================================================================
+   cvm-comp-v5-ui — FieldItem component styles
+   All classes prefixed with gn- to avoid host-project conflicts.
+   Design tokens from Figma (hardcoded, no SCSS dependency).
+   ================================================================= */
+
+/* ── Design tokens ─────────────────────────────────────────────── */
+/* Primary:    #2b7fff  |  Border:  #DCDCDC  |  Caret:   #C6C6C6  */
+/* Text:       #1D1D1D  |  Label:   #6D6D6D  |  Danger:  #ef4444  */
+/* Placeholder:#94a3b8  |  BgHover: #f1f5f9  |  BgActive:#e0f0ff  */
+
+/* ── Column wrapper ─────────────────────────────────────────────── */
+.gn-field-col {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Field wrapper (replaces custom-field + form-group) ─────────── */
+.gn-custom-field {
+  margin-bottom: 0;
+}
+
+.gn-form-group {
+  /* keep layout neutral — actual spacing provided by gn-field-col */
+}
+
+/* ── Field label ────────────────────────────────────────────────── */
+.gn-form-control-label {
+  display: block;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #6D6D6D;
+  margin-bottom: 2px;
+}
+
+.gn-form-control-label.gn-required::after,
+.gn-form-control-label.required::after {
+  content: ' *';
+  color: #ef4444;
+}
+
+/* ── Base text input / textarea ─────────────────────────────────── */
+.gn-form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 8px 10px;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #1D1D1D;
+  background-color: #ffffff;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.gn-form-control::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.gn-form-control:focus {
+  border-color: #2b7fff;
+  box-shadow: none;
+}
+
+textarea.gn-form-control {
+  height: auto;
+  min-height: 82px;
+  resize: vertical;
+  line-height: 1.4;
+}
+
+/* ── Disabled / read-only inputs ────────────────────────────────── */
+.gn-form-control.gn-disabled-input,
+.gn-form-control.gn-disabled-text {
+  background-color: #f1f5f9;
+  border-color: #DCDCDC;
+  color: #6D6D6D;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.gn-disabled-input-div {
+  word-break: break-all;
+}
+
+/* ── Error text ─────────────────────────────────────────────────── */
+.gn-text-help {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 11px;
+  color: transparent;
+  min-height: 16px;
+  padding-top: 3px;
+}
+
+/* ── Validation state ───────────────────────────────────────────── */
+.gn-has-danger .gn-text-help {
+  color: #ef4444;
+}
+
+.gn-has-danger .gn-form-control,
+.gn-has-danger .GnSelect__control {
+  border-color: #ef4444!important;
+}
+
+/* ── Required field marker ──────────────────────────────────────── */
+.gn-custom-field.gn-required > .gn-form-control-label::after,
+.gn-custom-field.required > .gn-form-control-label::after {
+  content: ' *';
+  color: #ef4444;
+}
+
+/* ── Only-input variant (no outer label wrapper) ────────────────── */
+.gn-only-input-field {
+  width: 100%;
+}
+
+/* ── react-select overrides (.GnSelect prefix) ──────────────────── */
+.gn-select {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+}
+
+.gn-select .GnSelect__control {
+  min-height: 34px;
+  height: 34px;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  box-shadow: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  background-color: #ffffff;
+}
+
+.gn-select .GnSelect__control:hover {
+  border-color: #DCDCDC;
+}
+
+.gn-select .GnSelect__control.GnSelect__control--is-focused {
+  border-color: #2b7fff;
+  box-shadow: none;
+}
+
+.gn-select .GnSelect__control.GnSelect__control--is-disabled {
+  background-color: #f1f5f9;
+  border-color: #DCDCDC;
+  cursor: not-allowed;
+}
+
+.gn-select .GnSelect__value-container {
+  padding: 0 10px;
+  height: 34px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.gn-select .GnSelect__single-value {
+  font-size: 12px;
+  font-weight: 500;
+  color: #1D1D1D;
+  margin: 0;
+}
+
+.gn-select .GnSelect__placeholder {
+  font-size: 12px;
+  font-weight: 400;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.gn-select .GnSelect__input-container {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: #1D1D1D;
+}
+
+/* Caret — 16×16px, #C6C6C6 per Figma */
+.gn-select .GnSelect__indicator.GnSelect__dropdown-indicator {
+  padding: 0 8px;
+  color: #C6C6C6;
+}
+
+.gn-select .GnSelect__indicator.GnSelect__dropdown-indicator svg {
+  width: 16px;
+  height: 16px;
+  color: #C6C6C6;
+}
+
+.gn-select .GnSelect__indicator-separator {
+  background-color: #DCDCDC;
+}
+
+.gn-select .GnSelect__clear-indicator {
+  padding: 0 6px;
+  color: #C6C6C6;
+}
+
+.gn-select .GnSelect__clear-indicator:hover {
+  color: #6D6D6D;
+}
+
+.gn-select .GnSelect__clear-indicator svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Multi-select tags */
+.gn-select .GnSelect__value-container--is-multi {
+  flex-wrap: wrap;
+  height: auto;
+  min-height: 34px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.gn-select .GnSelect__multi-value {
+  background-color: #e0f0ff;
+  border-radius: 2px;
+  height: 22px;
+  align-items: center;
+  margin: 1px 2px;
+}
+
+.gn-select .GnSelect__multi-value__label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #2b7fff;
+  padding: 0 4px 0 6px;
+}
+
+.gn-select .GnSelect__multi-value__remove {
+  color: #2b7fff;
+  padding: 0 4px;
+  border-radius: 0 2px 2px 0;
+  cursor: pointer;
+}
+
+.gn-select .GnSelect__multi-value__remove:hover {
+  background-color: #2b7fff;
+  color: #ffffff;
+}
+
+.gn-select .GnSelect__multi-value__remove svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Dropdown menu */
+.gn-select .GnSelect__menu {
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+  margin-top: 2px;
+  z-index: 200;
+}
+
+.gn-select .GnSelect__menu-list {
+  padding: 4px 0;
+}
+
+.gn-select .GnSelect__option {
+  font-size: 12px;
+  font-weight: 500;
+  color: #1D1D1D;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+.gn-select .GnSelect__option.GnSelect__option--is-focused {
+  background-color: #f1f5f9;
+}
+
+.gn-select .GnSelect__option.GnSelect__option--is-selected {
+  background-color: #e0f0ff;
+  color: #2b7fff;
+}
+
+/* Menu portal (when rendered via menuPortalTarget) */
+.GnSelect__menu-portal {
+  z-index: 10000;
+}
+
+/* ── Search-box-icon widget ─────────────────────────────────────── */
+.gn-select-modal {
+  height: 34px;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.gn-select-modal .gn-icon-box {
+  float: right;
+  height: 32px;
+  width: 40px;
+  border-left: 1px solid #DCDCDC;
+  border-radius: 0 4px 4px 0;
+  background-color: #f8fafc;
+  text-align: center;
+  cursor: pointer;
+}
+
+.gn-select-modal .gn-icon-box .icon {
+  position: relative;
+  top: calc(50% - 10px);
+}
+
+.gn-select-modal-label {
+  display: inline-block;
+  color: #6D6D6D;
+  font-size: 12px;
+  line-height: 32px;
+  margin: 0 12px;
+}
+
+/* ── Input with append button ───────────────────────────────────── */
+.gn-input-group {
+  display: flex;
+  width: 100%;
+}
+
+.gn-input-group .gn-form-control {
+  border-radius: 4px 0 0 4px;
+  z-index: 0;
+  flex: 1;
+}
+
+.gn-input-group-append {
+  display: flex;
+}
+
+.gn-btn-append {
+  color: #6D6D6D;
+  background-color: transparent;
+  border: 1px solid #DCDCDC;
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-family: 'Poppins', -apple-system, sans-serif;
+}
+
+.gn-btn-append:hover {
+  background-color: #f1f5f9;
+}
+
+/* ── Checkbox & Radio — shared ──────────────────────────────────── */
+.gn-checkBoxRadio_main {
+  overflow: auto;
+}
+
+.gn-checkBoxRadio_main.gn-rc-mandatory {
+  border-radius: 4px;
+  border: 1px solid #DCDCDC;
+  padding-left: 12px;
+  background-color: #ffffff;
+}
+
+.gn-checkBoxRadio_main.gn-rc-mandatory .gn-btn_container {
+  padding-top: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.gn-checkBoxRadio_main.gn-rc-mandatory .gn-checkBoxRadio {
+  padding: 4px 0;
+  margin-bottom: 0;
+}
+
+.gn-checkBoxRadio_main.gn-rc-listed {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 0;
+  padding-left: 0;
+}
+
+.gn-checkBoxRadio_container {
+  overflow: auto;
+}
+
+.gn-checkBoxRadio_container.gn-cb-left {
+  float: left;
+}
+
+.gn-checkBoxRadio_container.gn-cb-listed {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: #ffffff;
+}
+
+.gn-checkBoxRadio_container.gn-cb-listed:hover {
+  background-color: #f8fafc;
+}
+
+.gn-checkBoxRadio {
+  overflow: auto;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.gn-checkBoxRadio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.gn-checkBoxRadio_label {
+  float: left;
+  padding-right: 12px;
+  padding-top: 3px;
+  font-size: 12px;
+  font-family: 'Poppins', -apple-system, sans-serif;
+}
+
+.gn-checkBoxRadio_label.gn-checked_box {
+  color: #2b7fff;
+}
+
+.gn-checkBoxRadio_label.gn-nc_box {
+  color: #1D1D1D;
+}
+
+.gn-btn_container {
+  float: left;
+  width: 15px;
+  height: 15px;
+  position: relative;
+}
+
+/* ── Radio button custom mark ───────────────────────────────────── */
+.gn-checkBoxRadio.gn-radio .gn-checkmark {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: #ffffff;
+  border: 1px solid #C6C6C6;
+  border-radius: 9999px;
+  overflow: auto;
+}
+
+.gn-checkBoxRadio.gn-radio .gn-checkmark::after {
+  content: '';
+  display: none;
+  position: relative;
+  top: 2px;
+  left: 2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background-color: #2b7fff;
+}
+
+.gn-checkBoxRadio.gn-radio input:checked ~ .gn-checkmark {
+  border-color: #2b7fff;
+}
+
+.gn-checkBoxRadio.gn-radio input:checked ~ .gn-checkmark::after {
+  display: block;
+}
+
+/* ── Checkbox custom mark ───────────────────────────────────────── */
+.gn-checkBoxRadio.gn-check .gn-checkmark {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: #ffffff;
+  border: 1px solid #C6C6C6;
+  border-radius: 2px;
+}
+
+.gn-checkBoxRadio.gn-check .gn-checkmark::after {
+  content: '';
+  display: none;
+  position: relative;
+  left: 3px;
+  top: 0;
+  width: 6px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.gn-checkBoxRadio.gn-check input:checked ~ .gn-checkmark {
+  background-color: #2b7fff;
+  border-color: #2b7fff;
+}
+
+.gn-checkBoxRadio.gn-check input:checked ~ .gn-checkmark::after {
+  display: block;
+}
+
+/* Danger border on checkmark */
+.gn-has-danger .gn-checkBoxRadio .gn-checkmark {
+  border-color: #ef4444;
+}

@@ -15,22 +15,22 @@ const FieldItem = (props) => {
     const getLabel = (isSelected, label) => {
       if (props.isWithoutLabel) return null;
       return (
-        <div className={`float-left checkBoxRadio_label ${isSelected ? 'checked_box' : 'nc_box'}`}>
+        <div className={`gn-checkBoxRadio_label ${isSelected ? 'gn-checked_box' : 'gn-nc_box'}`}>
           {label}
         </div>
       );
     };
     if (!props.values) return null;
     return props.values.map((data, index) => (
-      <div className={`checkBoxRadio_container${props.isListedInput ? ' cb-listed' : ' cb-left'}`} key={index}>
-        <label className="checkBoxRadio radio">
-          <div className="float-left btn_container">
+      <div className={`gn-checkBoxRadio_container${props.isListedInput ? ' gn-cb-listed' : ' gn-cb-left'}`} key={index}>
+        <label className="gn-checkBoxRadio gn-radio">
+          <div className="gn-btn_container">
             <input
               type="radio"
               checked={!!(value && optionEq(value, data))}
               onChange={() => props.onChange(data)}
             />
-            <span className="checkmark" />
+            <span className="gn-checkmark" />
           </div>
           {getLabel(optionEq(value, data), data.label)}
         </label>
@@ -42,7 +42,7 @@ const FieldItem = (props) => {
     const getLabel = (isChecked, data) => {
       if (props.isWithoutLabel) return null;
       return (
-        <div className={`float-left checkBoxRadio_label ${isChecked ? 'checked_box' : 'nc_box'}`}>
+        <div className={`gn-checkBoxRadio_label ${isChecked ? 'gn-checked_box' : 'gn-nc_box'}`}>
           {props.isWithoutValue ? data.label : `${data.label}(${data.value})`}
           {data.subLabel && <div>{data.subLabel}</div>}
         </div>
@@ -52,15 +52,15 @@ const FieldItem = (props) => {
     return props.values.map((data, index) => {
       const isChecked = props.value && props.value.some(item => item.value === data.value);
       return (
-        <div className={`checkBoxRadio_container${props.isListedInput ? ' cb-listed' : ' cb-left'}`} key={index}>
-          <label className="checkBoxRadio check">
-            <div className="float-left btn_container">
+        <div className={`gn-checkBoxRadio_container${props.isListedInput ? ' gn-cb-listed' : ' gn-cb-left'}`} key={index}>
+          <label className="gn-checkBoxRadio gn-check">
+            <div className="gn-btn_container">
               <input
                 type="checkbox"
                 checked={!!isChecked}
                 onChange={() => props.onChange(data)}
               />
-              <span className="checkmark" />
+              <span className="gn-checkmark" />
             </div>
             {getLabel(isChecked, data)}
           </label>
@@ -69,7 +69,7 @@ const FieldItem = (props) => {
     });
   };
 
-  const className = `custom-field${!props.getOnlyInput ? ' form-group' : ''}${props.touched ? ' has-danger' : ''}${props.className ? ' ' + props.className : ''}`;
+  const className = `gn-custom-field${!props.getOnlyInput ? ' gn-form-group' : ''}${props.touched ? ' gn-has-danger' : ''}${props.className ? ' ' + props.className : ''}`;
   const dateFormat = 'yyyy-MM-dd';
 
   const getInput = () => {
@@ -90,10 +90,10 @@ const FieldItem = (props) => {
       case FIELD_TYPES.DROP_DOWN:
         return (
           <Select
-            className="Select" classNamePrefix="Select"
+            className="gn-select" classNamePrefix="GnSelect"
             placeholder={props.placeholder}
             value={expandSelectValue(props.value, props.values)}
-            options={props.isNoSort ? dropdownOptions : dropdownOptions}
+            options={dropdownOptions}
             onChange={props.onChange}
             isDisabled={props.disabled}
             onBlur={onBlur}
@@ -107,7 +107,7 @@ const FieldItem = (props) => {
       case FIELD_TYPES.MUTLI_SELECT:
         return (
           <Select
-            className="Select" classNamePrefix="Select"
+            className="gn-select" classNamePrefix="GnSelect"
             placeholder={props.placeholder}
             value={expandSelectValue(props.value, props.values)}
             options={sortOptionsByLabel(props.values)}
@@ -124,7 +124,7 @@ const FieldItem = (props) => {
       case FIELD_TYPES.MUTLI_SELECT_ALL:
         return (
           <Select
-            className="Select" classNamePrefix="Select"
+            className="gn-select" classNamePrefix="GnSelect"
             placeholder={props.placeholder}
             value={expandSelectValue(props.value, props.values)}
             options={options}
@@ -152,7 +152,7 @@ const FieldItem = (props) => {
             dateFormat={props.dateFormat || dateFormat}
             peekNextMonth showMonthDropdown showYearDropdown dropdownMode="select"
             isClearable selected={props.value}
-            onChange={props.onChange} className="form-control"
+            onChange={props.onChange} className="gn-form-control"
             todayButton="Today" minDate={props.minDate} maxDate={props.maxDate}
             excludeDates={props.excludeDates} placeholderText={props.placeholder}
             disabled={props.disabled} onBlur={onBlur}
@@ -166,7 +166,7 @@ const FieldItem = (props) => {
             dateFormat={`${props.dateFormat || dateFormat} HH:mm`}
             peekNextMonth showMonthDropdown showYearDropdown dropdownMode="select"
             isClearable selected={props.value}
-            onChange={props.onChange} className="form-control"
+            onChange={props.onChange} className="gn-form-control"
             todayButton="Today" showTimeSelect timeFormat="HH:mm"
             timeIntervals={props.interval} excludeTimes={props.excludeTimes}
             minTime={props.minTime} maxTime={props.maxTime}
@@ -183,7 +183,7 @@ const FieldItem = (props) => {
             dateFormat={props.dateFormat || dateFormat}
             peekNextMonth showMonthDropdown showYearDropdown dropdownMode="select"
             isClearable selected={props.startDate}
-            onChange={props.onChange} className="form-control"
+            onChange={props.onChange} className="gn-form-control"
             todayButton="Today" minDate={props.minDate} maxDate={props.endDate}
             selectsStart startDate={props.startDate} endDate={props.endDate}
             placeholderText={props.placeholder} disabled={props.disabled} onBlur={onBlur}
@@ -197,7 +197,7 @@ const FieldItem = (props) => {
             dateFormat={`${props.dateFormat || dateFormat} HH:mm`}
             peekNextMonth showMonthDropdown showYearDropdown dropdownMode="select"
             isClearable selected={props.startDate}
-            onChange={props.onChange} className="form-control"
+            onChange={props.onChange} className="gn-form-control"
             todayButton="Today" showTimeSelect timeFormat="HH:mm"
             timeIntervals={props.interval} minTime={props.minTime} maxTime={props.maxTime}
             minDate={props.minDate} maxDate={props.maxDate}
@@ -213,7 +213,7 @@ const FieldItem = (props) => {
             dateFormat={props.dateFormat || dateFormat}
             peekNextMonth showMonthDropdown showYearDropdown dropdownMode="select"
             isClearable selected={props.endDate}
-            onChange={props.onChange} className="form-control"
+            onChange={props.onChange} className="gn-form-control"
             todayButton="Today" minDate={props.startDate} maxDate={props.maxDate}
             selectsEnd startDate={props.startDate} endDate={props.endDate}
             placeholderText={props.placeholder} disabled={props.disabled} onBlur={onBlur}
@@ -227,7 +227,7 @@ const FieldItem = (props) => {
             dateFormat={`${props.dateFormat || dateFormat} HH:mm`}
             peekNextMonth showMonthDropdown showYearDropdown dropdownMode="select"
             isClearable selected={props.endDate}
-            onChange={props.onChange} className="form-control"
+            onChange={props.onChange} className="gn-form-control"
             todayButton="Today" showTimeSelect timeFormat="HH:mm"
             timeIntervals={props.interval} minTime={props.minTime} maxTime={props.maxTime}
             minDate={props.startDate} maxDate={props.maxDate}
@@ -240,7 +240,7 @@ const FieldItem = (props) => {
       case FIELD_TYPES.ASYNC_DROP_DOWN:
         return (
           <AsyncSelect
-            className="Select" classNamePrefix="Select"
+            className="gn-select" classNamePrefix="GnSelect"
             value={props.value} onChange={props.onChange}
             loadOptions={props.loadOptions}
             placeholder={props.placeholder} isDisabled={props.disabled} onBlur={onBlur}
@@ -250,7 +250,7 @@ const FieldItem = (props) => {
       case FIELD_TYPES.ASYNC_MUTLI_SELECT:
         return (
           <AsyncSelect
-            className="Select" classNamePrefix="Select"
+            className="gn-select" classNamePrefix="GnSelect"
             value={props.value} onChange={props.onChange}
             loadOptions={props.loadOptions} isMulti
             placeholder={props.placeholder} isDisabled={props.disabled} onBlur={onBlur}
@@ -261,14 +261,14 @@ const FieldItem = (props) => {
         return (
           <input
             readOnly value={props.value} placeholder={props.placeholder}
-            className="disabled-input form-control disabed-text" type="text"
+            className="gn-form-control gn-disabled-input gn-disabled-text" type="text"
             onBlur={onBlur} title={props.value}
           />
         );
 
       case FIELD_TYPES.RADIO_BUTTON: {
         const radio = (
-          <div className={`checkBoxRadio_main${!props.isWithoutLabel ? ' rc-mandatory' : ''}${props.isListedInput ? ' rc-listed' : ''}`}>
+          <div className={`gn-checkBoxRadio_main${!props.isWithoutLabel ? ' gn-rc-mandatory' : ''}${props.isListedInput ? ' gn-rc-listed' : ''}`}>
             {getRadioButton()}
           </div>
         );
@@ -279,7 +279,7 @@ const FieldItem = (props) => {
 
       case FIELD_TYPES.CHECK_BOX: {
         const cb = (
-          <div className={`checkBoxRadio_main${!props.isWithoutLabel ? ' rc-mandatory' : ''}${props.isListedInput ? ' rc-listed' : ''}`}>
+          <div className={`gn-checkBoxRadio_main${!props.isWithoutLabel ? ' gn-rc-mandatory' : ''}${props.isListedInput ? ' gn-rc-listed' : ''}`}>
             {getCheckBox()}
           </div>
         );
@@ -289,13 +289,13 @@ const FieldItem = (props) => {
       }
 
       case FIELD_TYPES.TEXT_AREA_DISABLED:
-        return <textarea readOnly value={props.value} className="form-control disabed-text" />;
+        return <textarea readOnly value={props.value} className="gn-form-control gn-disabled-text" />;
 
       case FIELD_TYPES.SEARCH_BOX_ICON:
         return (
-          <div className="select-modal">
-            <span className="select-modal-label">{props.fieldValue}</span>
-            <div className="icon-box" onClick={props.onClick}>
+          <div className="gn-select-modal">
+            <span className="gn-select-modal-label">{props.fieldValue}</span>
+            <div className="gn-icon-box" onClick={props.onClick}>
               <span className={`icon fa ${props.icon || 'fa-plus'}`} />
             </div>
           </div>
@@ -306,7 +306,7 @@ const FieldItem = (props) => {
           <textarea
             value={props.value} placeholder={props.placeholder}
             onChange={e => props.onChange ? props.onChange(e.target.value, {}, e) : null}
-            className="form-control" disabled={!!props.disabled} onBlur={onBlur}
+            className="gn-form-control" disabled={!!props.disabled} onBlur={onBlur}
           />
         );
 
@@ -318,7 +318,7 @@ const FieldItem = (props) => {
         };
         return (
           <Select
-            className="Select" classNamePrefix="Select"
+            className="gn-select" classNamePrefix="GnSelect"
             placeholder={props.placeholder}
             value={expandSelectValue(props.value, props.values)}
             options={(props.values || []).map(buildNested)}
@@ -332,15 +332,15 @@ const FieldItem = (props) => {
 
       case FIELD_TYPES.INPUT_WITH_BUTTON:
         return (
-          <div className="input-group">
+          <div className="gn-input-group">
             <input
               disabled={!!props.disabled} value={props.value}
               placeholder={props.placeholder} maxLength={props.maxLength}
               onChange={e => props.onChange ? props.onChange(e.target.value) : null}
-              className="form-control" type={props.inputType || 'text'} onBlur={onBlur}
+              className="gn-form-control" type={props.inputType || 'text'} onBlur={onBlur}
             />
-            <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="button" onClick={props.onButtonClick}>
+            <div className="gn-input-group-append">
+              <button className="gn-btn-append" type="button" onClick={props.onButtonClick}>
                 {props.buttonLabel}
               </button>
             </div>
@@ -349,7 +349,7 @@ const FieldItem = (props) => {
 
       case FIELD_TYPES.VIEW_DETAILS_BOX:
         return (
-          <div className="disabled-input form-control disabed-text disabled-input-div">
+          <div className="gn-form-control gn-disabled-input gn-disabled-text gn-disabled-input-div">
             {props.value}
           </div>
         );
@@ -363,7 +363,7 @@ const FieldItem = (props) => {
             value={props.value} maxLength={props.maxLength}
             placeholder={props.placeholder}
             onChange={e => props.onChange ? props.onChange(e.target.value) : null}
-            className="form-control" type={props.inputType || 'text'}
+            className="gn-form-control" type={props.inputType || 'text'}
             readOnly={!!props.disabled} title={props.noTitle ? '' : props.value}
             onBlur={onBlur}
           />
@@ -372,12 +372,12 @@ const FieldItem = (props) => {
   };
 
   const getInputContainer = () => (
-    <div className={props.ismandatory ? `${className} required` : className} stt={props.stt}>
-      <label className={props.ismandatory ? 'form-control-label required' : 'form-control-label'}>
+    <div className={props.ismandatory ? `${className} gn-required` : className} stt={props.stt}>
+      <label className={props.ismandatory ? 'gn-form-control-label gn-required' : 'gn-form-control-label'}>
         {props.label}
       </label>
       {getInput()}
-      <div className="text-help">
+      <div className="gn-text-help">
         {props.touched && props.error ? props.error : ''}
       </div>
     </div>
@@ -387,14 +387,13 @@ const FieldItem = (props) => {
 
   if (props.getOnlyInput) {
     return (
-      <div className={props.ismandatory ? `${className} required only-input-field` : `${className} only-input-field`}>
+      <div className={props.ismandatory ? `${className} gn-required gn-only-input-field` : `${className} gn-only-input-field`}>
         {getInput()}
-        <div className="text-help">{props.touched ? props.error : ''}</div>
+        <div className="gn-text-help">{props.touched ? props.error : ''}</div>
       </div>
     );
   }
 
-  // customWidth or default — wrap in a generic col div (no Bootstrap Col dependency)
   return (
     <div className="gn-field-col">
       {getInputContainer()}

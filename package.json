@@ -8,7 +8,9 @@
     ".": {
       "import": "./dist/cvm-comp-v5-ui.es.js",
       "require": "./dist/cvm-comp-v5-ui.umd.js"
-    }
+    },
+    "./style": "./dist/style.css",
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "build": "vite build",
