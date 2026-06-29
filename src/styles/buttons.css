@@ -1,9 +1,10 @@
 /* =================================================================
    cvm-comp-v5-ui — CustomButton styles (Figma-aligned)
+   All classes prefixed with gn- to avoid collisions.
    Primary: #0099FF  Danger: #DA1E28  Success: #388E3C
    ================================================================= */
 
-.custom-btn {
+.gn-btn {
   cursor: pointer;
   display: inline-flex;
   flex-direction: row;
@@ -29,90 +30,90 @@
 }
 
 /* ── Shape ──────────────────────────────────────────────────────── */
-.custom-btn.btn-block-c { border-radius: 4px; }
-.custom-btn.btn-round   { border-radius: 9999px; }
+.gn-btn.gn-btn-block { border-radius: 4px; }
+.gn-btn.gn-btn-round { border-radius: 9999px; }
 
 /* ── Size ───────────────────────────────────────────────────────── */
-.custom-btn.btn-sm    { min-width: 60px;  height: 28px; padding: 4px 8px;    font-size: 11px; }
-.custom-btn.btn-md    { min-width: 60px;  height: 36px; padding: 9px 10px;   font-size: 12px; }
-.custom-btn.btn-lg    { min-width: 150px; height: 44px; padding: 12px 16px;  font-size: 14px; }
-.custom-btn.btn-md-lg { min-width: 80px;  height: 40px; padding: 9px 12px;   font-size: 14px; }
+.gn-btn.gn-btn-sm    { min-width: 60px;  height: 28px; padding: 4px 8px;    font-size: 11px; }
+.gn-btn.gn-btn-md    { min-width: 60px;  height: 36px; padding: 9px 10px;   font-size: 12px; }
+.gn-btn.gn-btn-lg    { min-width: 150px; height: 44px; padding: 12px 16px;  font-size: 14px; }
+.gn-btn.gn-btn-md-lg { min-width: 80px;  height: 40px; padding: 9px 12px;   font-size: 14px; }
 
 /* ── Primary (solid blue) ───────────────────────────────────────── */
-.custom-btn.custom-btn-primary {
+.gn-btn.gn-btn-primary {
   background: #0099FF;
   border-color: #0099FF;
   color: #FFFFFF;
 }
-.custom-btn.custom-btn-primary:hover:not(.btn-disabled) {
+.gn-btn.gn-btn-primary:hover:not(.gn-btn-disabled) {
   background: #0578BE;
   border-color: #0578BE;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
 }
 
 /* ── Secondary (blue outline) ───────────────────────────────────── */
-.custom-btn.custom-btn-secondary {
+.gn-btn.gn-btn-secondary {
   background: #FFFFFF;
   border-color: #0099FF;
   color: #0099FF;
 }
-.custom-btn.custom-btn-secondary:hover:not(.btn-disabled) {
+.gn-btn.gn-btn-secondary:hover:not(.gn-btn-disabled) {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
 }
 
 /* ── Tertiary (neutral outline) ─────────────────────────────────── */
-.custom-btn.custom-btn-tertiary {
+.gn-btn.gn-btn-tertiary {
   background: #FFFFFF;
   border-color: #EDEDED;
   color: #1D1D1D;
 }
-.custom-btn.custom-btn-tertiary:hover:not(.btn-disabled) {
+.gn-btn.gn-btn-tertiary:hover:not(.gn-btn-disabled) {
   border-color: #DCDCDC;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
 }
 
 /* ── Alert Primary (danger filled) ─────────────────────────────── */
-.custom-btn.btn-alert-primary {
+.gn-btn.gn-btn-alert-primary {
   background: #DA1E28;
   border-color: #DA1E28;
   color: #FFFFFF;
 }
-.custom-btn.btn-alert-primary:hover:not(.btn-disabled) {
+.gn-btn.gn-btn-alert-primary:hover:not(.gn-btn-disabled) {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
 }
 
 /* ── Alert Secondary (danger outline) ──────────────────────────── */
-.custom-btn.btn-alert-secondary {
+.gn-btn.gn-btn-alert-secondary {
   background: #FFFFFF;
   border-color: #DA1E28;
   color: #DA1E28;
 }
-.custom-btn.btn-alert-secondary:hover:not(.btn-disabled) {
+.gn-btn.gn-btn-alert-secondary:hover:not(.gn-btn-disabled) {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
 }
 
 /* ── Success Primary ────────────────────────────────────────────── */
-.custom-btn.btn-success-primary {
+.gn-btn.gn-btn-success-primary {
   background: #388E3C;
   border-color: #388E3C;
   color: #FFFFFF;
 }
-.custom-btn.btn-success-primary:hover:not(.btn-disabled) {
+.gn-btn.gn-btn-success-primary:hover:not(.gn-btn-disabled) {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
 }
 
 /* ── Success Secondary ──────────────────────────────────────────── */
-.custom-btn.btn-success-secondary {
+.gn-btn.gn-btn-success-secondary {
   background: #FFFFFF;
   border-color: #388E3C;
   color: #388E3C;
 }
-.custom-btn.btn-success-secondary:hover:not(.btn-disabled) {
+.gn-btn.gn-btn-success-secondary:hover:not(.gn-btn-disabled) {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
 }
 
 /* ── Text Primary (no bg / no border) ──────────────────────────── */
-.custom-btn.btn-text-primary {
+.gn-btn.gn-btn-text-primary {
   background: transparent;
   border-color: transparent;
   color: #0099FF;
@@ -120,12 +121,12 @@
   height: auto;
   padding: 0;
 }
-.custom-btn.btn-text-primary:hover:not(.btn-disabled) {
+.gn-btn.gn-btn-text-primary:hover:not(.gn-btn-disabled) {
   text-decoration: underline;
 }
 
 /* ── Text Danger ────────────────────────────────────────────────── */
-.custom-btn.btn-text-danger {
+.gn-btn.gn-btn-text-danger {
   background: transparent;
   border-color: transparent;
   color: #DA1E28;
@@ -133,12 +134,12 @@
   height: auto;
   padding: 0;
 }
-.custom-btn.btn-text-danger:hover:not(.btn-disabled) {
+.gn-btn.gn-btn-text-danger:hover:not(.gn-btn-disabled) {
   text-decoration: underline;
 }
 
 /* ── Disabled (overrides all variant colours) ───────────────────── */
-.custom-btn.btn-disabled {
+.gn-btn.gn-btn-disabled {
   background: #EDEDED !important;
   border-color: #EDEDED !important;
   color: #8D8D8D !important;
@@ -149,17 +150,17 @@
 }
 
 /* ── Colour modifier ────────────────────────────────────────────── */
-.custom-btn.color-primary   { color: #0099FF !important; }
-.custom-btn.color-secondary { color: #6d6d6d !important; }
+.gn-btn.gn-btn-color-primary   { color: #0099FF !important; }
+.gn-btn.gn-btn-color-secondary { color: #6d6d6d !important; }
 
 /* ── Alignment ──────────────────────────────────────────────────── */
-.custom-btn.float-left  { float: left; }
-.custom-btn.float-right { float: right; }
+.gn-btn.gn-btn-float-left  { float: left; }
+.gn-btn.gn-btn-float-right { float: right; }
 
 /* ── Margin helpers ─────────────────────────────────────────────── */
-.custom-btn.addMargin    { margin: 0 8px; }
-.custom-btn.margin-left  { margin-left: 8px; }
-.custom-btn.margin-right { margin-right: 8px; }
+.gn-btn.gn-btn-margin       { margin: 0 8px; }
+.gn-btn.gn-btn-margin-left  { margin-left: 8px; }
+.gn-btn.gn-btn-margin-right { margin-right: 8px; }
 
 /* ── Width ──────────────────────────────────────────────────────── */
-.custom-btn.btn-width-inherit { min-width: unset; width: 100%; }
+.gn-btn.gn-btn-width-inherit { min-width: unset; width: 100%; }

@@ -8,63 +8,63 @@ export const CustomButton = ({
 }) => {
   const getStyleClass = () => {
     switch (style) {
-      case BUTTON_STYLE.BRICK:    return 'btn-block-c';
-      case BUTTON_STYLE.ROUNDED:  return 'btn-round';
-      default:                    return 'btn';
+      case BUTTON_STYLE.BRICK:   return 'gn-btn-block';
+      case BUTTON_STYLE.ROUNDED: return 'gn-btn-round';
+      default:                   return '';
     }
   };
 
   const getTypeClass = () => {
     switch (type) {
-      case BUTTON_TYPE.PRIMARY:          return 'custom-btn-primary';
-      case BUTTON_TYPE.SECONDARY:        return 'custom-btn-secondary';
-      case BUTTON_TYPE.ALERT_PRIMARY:    return 'btn-alert-primary';
-      case BUTTON_TYPE.ALERT_SECONDARY:  return 'btn-alert-secondary';
-      case BUTTON_TYPE.TERTIARY:         return 'custom-btn-tertiary';
-      case BUTTON_TYPE.TEXT_PRIMARY:     return 'btn-text-primary';
-      case BUTTON_TYPE.TEXT_DANGER:      return 'btn-text-danger';
-      case BUTTON_TYPE.SUCCESS_PRIMARY:  return 'btn-success-primary';
-      case BUTTON_TYPE.SUCCESS_SECONDARY:return 'btn-success-secondary';
-      default:                           return '';
+      case BUTTON_TYPE.PRIMARY:           return 'gn-btn-primary';
+      case BUTTON_TYPE.SECONDARY:         return 'gn-btn-secondary';
+      case BUTTON_TYPE.TERTIARY:          return 'gn-btn-tertiary';
+      case BUTTON_TYPE.ALERT_PRIMARY:     return 'gn-btn-alert-primary';
+      case BUTTON_TYPE.ALERT_SECONDARY:   return 'gn-btn-alert-secondary';
+      case BUTTON_TYPE.SUCCESS_PRIMARY:   return 'gn-btn-success-primary';
+      case BUTTON_TYPE.SUCCESS_SECONDARY: return 'gn-btn-success-secondary';
+      case BUTTON_TYPE.TEXT_PRIMARY:      return 'gn-btn-text-primary';
+      case BUTTON_TYPE.TEXT_DANGER:       return 'gn-btn-text-danger';
+      default:                            return '';
     }
   };
 
   const getSizeClass = () => {
     switch (size) {
-      case BUTTON_SIZE.SMALL:        return 'btn-sm';
-      case BUTTON_SIZE.MEDIUM:       return 'btn-md';
-      case BUTTON_SIZE.LARGE:        return 'btn-lg';
-      case BUTTON_SIZE.MEDIUM_LARGE: return 'btn-md-lg';
+      case BUTTON_SIZE.SMALL:        return 'gn-btn-sm';
+      case BUTTON_SIZE.MEDIUM:       return 'gn-btn-md';
+      case BUTTON_SIZE.LARGE:        return 'gn-btn-lg';
+      case BUTTON_SIZE.MEDIUM_LARGE: return 'gn-btn-md-lg';
       default:                       return '';
     }
   };
 
   const getButtonWidth = () =>
-    width === BUTTON_ALIGN.INHERIT ? 'btn-width-inherit' : '';
+    width === BUTTON_ALIGN.INHERIT ? 'gn-btn-width-inherit' : '';
 
   const getColor = () => {
     switch (color) {
-      case COLOR.PRIMARY:   return 'color-primary';
-      case COLOR.SECONDARY: return 'color-secondary';
+      case COLOR.PRIMARY:   return 'gn-btn-color-primary';
+      case COLOR.SECONDARY: return 'gn-btn-color-secondary';
       default:              return '';
     }
   };
 
   const alignClass = align
-    ? `float-${align}${isButtonGroup ? ` margin-${align === 'left' ? 'right' : 'left'}` : ''}`
+    ? `gn-btn-float-${align}${isButtonGroup ? ` gn-btn-margin-${align === 'left' ? 'right' : 'left'}` : ''}`
     : '';
 
   const classes = [
-    'custom-btn',
+    'gn-btn',
     className,
     getStyleClass(),
     getTypeClass(),
     getColor(),
     getSizeClass(),
     alignClass,
-    isMarginRequired ? 'addMargin' : '',
+    isMarginRequired ? 'gn-btn-margin' : '',
     getButtonWidth(),
-    disabled ? 'btn-disabled' : '',
+    disabled ? 'gn-btn-disabled' : '',
   ].filter(Boolean).join(' ');
 
   const inlineStyle = {
@@ -87,7 +87,7 @@ export const CustomButton = ({
       {icon && (
         typeof icon === 'string'
           ? <i className={`fa ${icon}`} />
-          : <span className="custom-btn-icon" style={{ display: 'inline-flex', alignItems: 'center', flexShrink: 0 }}>{icon}</span>
+          : <span className="gn-btn-icon" style={{ display: 'inline-flex', alignItems: 'center', flexShrink: 0 }}>{icon}</span>
       )}
       {label || ''}
     </div>
