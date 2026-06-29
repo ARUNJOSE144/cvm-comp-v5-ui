@@ -1,142 +1,169 @@
 /* =================================================================
    cvm-comp-v5-ui — FieldItem component styles
-   All classes prefixed with gn- to avoid host-project conflicts.
-   Design tokens from Figma (hardcoded, no SCSS dependency).
+   Figma tokens: label #6D6D6D / input text #1D1D1D / border #DCDCDC
+                 caret #C6C6C6 / focus #2b7fff / disabled bg #F5F5F5
    ================================================================= */
 
-/* ── Design tokens ─────────────────────────────────────────────── */
-/* Primary:    #2b7fff  |  Border:  #DCDCDC  |  Caret:   #C6C6C6  */
-/* Text:       #1D1D1D  |  Label:   #6D6D6D  |  Danger:  #ef4444  */
-/* Placeholder:#94a3b8  |  BgHover: #f1f5f9  |  BgActive:#e0f0ff  */
-
-/* ── Column wrapper ─────────────────────────────────────────────── */
+/* ── Column wrapper ──────────────────────────────────────────────────
+   Outer cell used when the field renders in a grid/form.
+   Width is controlled by the parent grid; we just stretch to fill.
+   ------------------------------------------------------------------ */
 .gn-field-col {
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 180px;
+}
+
+/* ── Field container (Figma: Frame 2147225104) ───────────────────────
+   flex-column, gap 2px  →  label sits 2px above the control.
+   ------------------------------------------------------------------ */
+.gn-custom-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* ── Field wrapper (replaces custom-field + form-group) ─────────── */
-.gn-custom-field {
-  margin-bottom: 0;
-}
-
-.gn-form-group {
-  /* keep layout neutral — actual spacing provided by gn-field-col */
-}
-
-/* ── Field label ────────────────────────────────────────────────── */
+/* ── Field label (Figma: 12px / 500 / #6D6D6D / line-height 18px) ── */
 .gn-form-control-label {
   display: block;
+  width: 100%;
   font-family: 'Poppins', -apple-system, sans-serif;
-  font-size: 12px;
+  font-style: normal;
   font-weight: 500;
+  font-size: 12px;
   line-height: 18px;
   color: #6D6D6D;
-  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.gn-form-control-label.gn-required::after,
-.gn-form-control-label.required::after {
+.gn-form-control-label.gn-required::after {
   content: ' *';
   color: #ef4444;
 }
 
-/* ── Base text input / textarea ─────────────────────────────────── */
+/* ── Base text input (Figma: Frame 2147223906) ───────────────────────
+   height 34px, padding 8px 10px, border #DCDCDC 1px, radius 4px.
+   ------------------------------------------------------------------ */
 .gn-form-control {
   display: block;
   width: 100%;
   height: 34px;
   padding: 8px 10px;
+  box-sizing: border-box;
+
   font-family: 'Poppins', -apple-system, sans-serif;
-  font-size: 12px;
+  font-style: normal;
   font-weight: 500;
+  font-size: 12px;
   line-height: 18px;
   color: #1D1D1D;
+
   background-color: #ffffff;
   border: 1px solid #DCDCDC;
   border-radius: 4px;
-  box-sizing: border-box;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.15s;
 }
 
 .gn-form-control::placeholder {
-  color: #94a3b8;
   font-weight: 400;
+  color: #AFAFAF;
 }
 
 .gn-form-control:focus {
   border-color: #2b7fff;
-  box-shadow: none;
 }
 
+/* ── Textarea ─────────────────────────────────────────────────────── */
 textarea.gn-form-control {
   height: auto;
   min-height: 82px;
   resize: vertical;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-/* ── Disabled / read-only inputs ────────────────────────────────── */
+/* ── Disabled / read-only (Figma: Disabled state) ────────────────── */
+.gn-form-control[disabled],
+.gn-form-control[readonly],
 .gn-form-control.gn-disabled-input,
 .gn-form-control.gn-disabled-text {
-  background-color: #f1f5f9;
+  background-color: #F5F5F5;
   border-color: #DCDCDC;
-  color: #6D6D6D;
+  color: #AFAFAF;
   cursor: not-allowed;
   opacity: 1;
 }
 
 .gn-disabled-input-div {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #AFAFAF;
+  background-color: #F5F5F5;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
   word-break: break-all;
 }
 
-/* ── Error text ─────────────────────────────────────────────────── */
+/* ── Validation error text ────────────────────────────────────────── */
 .gn-text-help {
   font-family: 'Poppins', -apple-system, sans-serif;
   font-size: 11px;
+  line-height: 14px;
+  min-height: 14px;
   color: transparent;
-  min-height: 16px;
-  padding-top: 3px;
+  padding-top: 2px;
 }
 
-/* ── Validation state ───────────────────────────────────────────── */
 .gn-has-danger .gn-text-help {
   color: #ef4444;
 }
 
-.gn-has-danger .gn-form-control,
+.gn-has-danger .gn-form-control {
+  border-color: #ef4444;
+}
+
 .gn-has-danger .GnSelect__control {
-  border-color: #ef4444!important;
+  border-color: #ef4444 !important;
 }
 
-/* ── Required field marker ──────────────────────────────────────── */
-.gn-custom-field.gn-required > .gn-form-control-label::after,
-.gn-custom-field.required > .gn-form-control-label::after {
-  content: ' *';
-  color: #ef4444;
-}
-
-/* ── Only-input variant (no outer label wrapper) ────────────────── */
+/* ── Only-input variant ───────────────────────────────────────────── */
 .gn-only-input-field {
   width: 100%;
 }
 
-/* ── react-select overrides (.GnSelect prefix) ──────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+   react-select  (.gn-select / .GnSelect__ prefix)
+   Figma: control 34px, border #DCDCDC, radius 4px, Poppins 12/500
+          caret 16×16 #C6C6C6 (border 1.25px per Figma Vector spec)
+   ════════════════════════════════════════════════════════════════════ */
 .gn-select {
   font-family: 'Poppins', -apple-system, sans-serif;
   font-size: 12px;
+  width: 100%;
 }
 
+/* ── Control (the visible input box) ─────────────────────────────── */
 .gn-select .GnSelect__control {
   min-height: 34px;
   height: 34px;
   border: 1px solid #DCDCDC;
   border-radius: 4px;
   box-shadow: none;
-  cursor: pointer;
-  transition: border-color 0.2s;
   background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  flex-wrap: nowrap;
 }
 
 .gn-select .GnSelect__control:hover {
@@ -149,21 +176,24 @@ textarea.gn-form-control {
 }
 
 .gn-select .GnSelect__control.GnSelect__control--is-disabled {
-  background-color: #f1f5f9;
+  background-color: #F5F5F5;
   border-color: #DCDCDC;
   cursor: not-allowed;
 }
 
+/* ── Value container (padding matches Figma: 8px top/bottom, 10px L) */
 .gn-select .GnSelect__value-container {
-  padding: 0 10px;
+  padding: 0 8px 0 10px;
   height: 34px;
   align-items: center;
   flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .gn-select .GnSelect__single-value {
   font-size: 12px;
   font-weight: 500;
+  line-height: 18px;
   color: #1D1D1D;
   margin: 0;
 }
@@ -171,7 +201,7 @@ textarea.gn-form-control {
 .gn-select .GnSelect__placeholder {
   font-size: 12px;
   font-weight: 400;
-  color: #94a3b8;
+  color: #AFAFAF;
   margin: 0;
 }
 
@@ -182,58 +212,135 @@ textarea.gn-form-control {
   color: #1D1D1D;
 }
 
-/* Caret — 16×16px, #C6C6C6 per Figma */
-.gn-select .GnSelect__indicator.GnSelect__dropdown-indicator {
-  padding: 0 8px;
+.gn-select .GnSelect__input {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ── Indicators area ──────────────────────────────────────────────── */
+.gn-select .GnSelect__indicators {
+  height: 34px;
+  align-items: center;
+}
+
+/* Caret / dropdown arrow — Figma: 16×16, #C6C6C6, 1.25px stroke */
+.gn-select .GnSelect__dropdown-indicator {
+  padding: 0 8px 0 0;
   color: #C6C6C6;
 }
 
-.gn-select .GnSelect__indicator.GnSelect__dropdown-indicator svg {
+.gn-select .GnSelect__dropdown-indicator svg {
   width: 16px;
   height: 16px;
   color: #C6C6C6;
+  stroke-width: 0;
 }
 
-.gn-select .GnSelect__indicator-separator {
-  background-color: #DCDCDC;
-}
-
+/* Clear × — Figma: 16×16, #C6C6C6 */
 .gn-select .GnSelect__clear-indicator {
-  padding: 0 6px;
+  padding: 0 4px;
   color: #C6C6C6;
+}
+
+.gn-select .GnSelect__clear-indicator svg {
+  width: 16px;
+  height: 16px;
 }
 
 .gn-select .GnSelect__clear-indicator:hover {
   color: #6D6D6D;
 }
 
-.gn-select .GnSelect__clear-indicator svg {
-  width: 14px;
-  height: 14px;
+/* Separator between clear and caret — Figma: 1.25px #C6C6C6 */
+.gn-select .GnSelect__indicator-separator {
+  background-color: #C6C6C6;
+  width: 1px;
+  margin: 8px 0;
 }
 
-/* Multi-select tags */
+/* Disabled indicators */
+.gn-select .GnSelect__control--is-disabled .GnSelect__dropdown-indicator,
+.gn-select .GnSelect__control--is-disabled .GnSelect__indicator-separator {
+  color: #DCDCDC;
+  background-color: #DCDCDC;
+}
+
+/* ── Dropdown menu ────────────────────────────────────────────────── */
+.gn-select .GnSelect__menu {
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+  margin-top: 2px;
+  z-index: 200;
+  font-family: 'Poppins', -apple-system, sans-serif;
+}
+
+.gn-select .GnSelect__menu-list {
+  padding: 4px 0;
+}
+
+.gn-select .GnSelect__option {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #1D1D1D;
+  padding: 7px 10px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.gn-select .GnSelect__option.GnSelect__option--is-focused {
+  background-color: #F5F5F5;
+  color: #1D1D1D;
+}
+
+.gn-select .GnSelect__option.GnSelect__option--is-selected {
+  background-color: #EBF3FF;
+  color: #2b7fff;
+}
+
+.gn-select .GnSelect__option.GnSelect__option--is-selected.GnSelect__option--is-focused {
+  background-color: #daeaff;
+}
+
+.gn-select .GnSelect__no-options-message {
+  font-size: 12px;
+  color: #AFAFAF;
+  padding: 7px 10px;
+}
+
+/* Menu in portal */
+.GnSelect__menu-portal {
+  z-index: 10000;
+}
+
+/* ── Multi-select ─────────────────────────────────────────────────── */
 .gn-select .GnSelect__value-container--is-multi {
   flex-wrap: wrap;
   height: auto;
   min-height: 34px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  gap: 2px;
 }
 
 .gn-select .GnSelect__multi-value {
-  background-color: #e0f0ff;
+  display: flex;
+  align-items: center;
+  background-color: #EBF3FF;
   border-radius: 2px;
   height: 22px;
-  align-items: center;
-  margin: 1px 2px;
+  margin: 1px 2px 1px 0;
 }
 
 .gn-select .GnSelect__multi-value__label {
+  font-family: 'Poppins', -apple-system, sans-serif;
   font-size: 11px;
   font-weight: 500;
+  line-height: 18px;
   color: #2b7fff;
-  padding: 0 4px 0 6px;
+  padding: 0 2px 0 6px;
 }
 
 .gn-select .GnSelect__multi-value__remove {
@@ -241,6 +348,8 @@ textarea.gn-form-control {
   padding: 0 4px;
   border-radius: 0 2px 2px 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .gn-select .GnSelect__multi-value__remove:hover {
@@ -253,42 +362,28 @@ textarea.gn-form-control {
   height: 12px;
 }
 
-/* Dropdown menu */
-.gn-select .GnSelect__menu {
-  border: 1px solid #DCDCDC;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
-  margin-top: 2px;
-  z-index: 200;
+/* ── Multi-select control expands vertically when tags wrap ───────── */
+.gn-select:has(.GnSelect__value-container--is-multi) .GnSelect__control {
+  height: auto;
+  min-height: 34px;
 }
 
-.gn-select .GnSelect__menu-list {
-  padding: 4px 0;
+/* ════════════════════════════════════════════════════════════════════
+   Date-picker wrapper — makes the <input> fill the control box
+   ════════════════════════════════════════════════════════════════════ */
+.react-datepicker-wrapper {
+  width: 100%;
+  display: block;
 }
 
-.gn-select .GnSelect__option {
-  font-size: 12px;
-  font-weight: 500;
-  color: #1D1D1D;
-  padding: 7px 10px;
-  cursor: pointer;
+.react-datepicker__input-container {
+  width: 100%;
+  display: block;
 }
 
-.gn-select .GnSelect__option.GnSelect__option--is-focused {
-  background-color: #f1f5f9;
-}
-
-.gn-select .GnSelect__option.GnSelect__option--is-selected {
-  background-color: #e0f0ff;
-  color: #2b7fff;
-}
-
-/* Menu portal (when rendered via menuPortalTarget) */
-.GnSelect__menu-portal {
-  z-index: 10000;
-}
-
-/* ── Search-box-icon widget ─────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+   Search-box-icon widget
+   ════════════════════════════════════════════════════════════════════ */
 .gn-select-modal {
   height: 34px;
   border: 1px solid #DCDCDC;
@@ -303,7 +398,7 @@ textarea.gn-form-control {
   width: 40px;
   border-left: 1px solid #DCDCDC;
   border-radius: 0 4px 4px 0;
-  background-color: #f8fafc;
+  background-color: #F5F5F5;
   text-align: center;
   cursor: pointer;
 }
@@ -321,7 +416,9 @@ textarea.gn-form-control {
   margin: 0 12px;
 }
 
-/* ── Input with append button ───────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+   Input-with-button
+   ════════════════════════════════════════════════════════════════════ */
 .gn-input-group {
   display: flex;
   width: 100%;
@@ -329,7 +426,6 @@ textarea.gn-form-control {
 
 .gn-input-group .gn-form-control {
   border-radius: 4px 0 0 4px;
-  z-index: 0;
   flex: 1;
 }
 
@@ -338,22 +434,26 @@ textarea.gn-form-control {
 }
 
 .gn-btn-append {
+  height: 34px;
   color: #6D6D6D;
-  background-color: transparent;
+  background-color: #ffffff;
   border: 1px solid #DCDCDC;
-  border-left: 0;
+  border-left: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
-  padding: 6px 8px;
+  padding: 0 10px;
   font-size: 12px;
   font-family: 'Poppins', -apple-system, sans-serif;
+  font-weight: 500;
 }
 
 .gn-btn-append:hover {
-  background-color: #f1f5f9;
+  background-color: #F5F5F5;
 }
 
-/* ── Checkbox & Radio — shared ──────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+   Checkbox & Radio
+   ════════════════════════════════════════════════════════════════════ */
 .gn-checkBoxRadio_main {
   overflow: auto;
 }
@@ -377,8 +477,8 @@ textarea.gn-form-control {
 }
 
 .gn-checkBoxRadio_main.gn-rc-listed {
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-bottom: 0;
+  border: 1px solid #DCDCDC;
+  border-bottom: none;
   padding-left: 0;
 }
 
@@ -391,13 +491,13 @@ textarea.gn-form-control {
 }
 
 .gn-checkBoxRadio_container.gn-cb-listed {
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 8px 12px;
+  border-bottom: 1px solid #DCDCDC;
   background-color: #ffffff;
 }
 
 .gn-checkBoxRadio_container.gn-cb-listed:hover {
-  background-color: #f8fafc;
+  background-color: #F5F5F5;
 }
 
 .gn-checkBoxRadio {
@@ -415,9 +515,11 @@ textarea.gn-form-control {
 .gn-checkBoxRadio_label {
   float: left;
   padding-right: 12px;
-  padding-top: 3px;
+  padding-top: 2px;
   font-size: 12px;
+  font-weight: 500;
   font-family: 'Poppins', -apple-system, sans-serif;
+  line-height: 18px;
 }
 
 .gn-checkBoxRadio_label.gn-checked_box {
@@ -435,26 +537,27 @@ textarea.gn-form-control {
   position: relative;
 }
 
-/* ── Radio button custom mark ───────────────────────────────────── */
+/* Radio */
 .gn-checkBoxRadio.gn-radio .gn-checkmark {
   position: absolute;
   height: 15px;
   width: 15px;
   background-color: #ffffff;
-  border: 1px solid #C6C6C6;
-  border-radius: 9999px;
-  overflow: auto;
+  border: 1.25px solid #C6C6C6;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .gn-checkBoxRadio.gn-radio .gn-checkmark::after {
   content: '';
   display: none;
-  position: relative;
-  top: 2px;
-  left: 2px;
-  width: 9px;
-  height: 9px;
-  border-radius: 9999px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
   background-color: #2b7fff;
 }
 
@@ -466,26 +569,26 @@ textarea.gn-form-control {
   display: block;
 }
 
-/* ── Checkbox custom mark ───────────────────────────────────────── */
+/* Checkbox */
 .gn-checkBoxRadio.gn-check .gn-checkmark {
   position: absolute;
   height: 15px;
   width: 15px;
   background-color: #ffffff;
-  border: 1px solid #C6C6C6;
+  border: 1.25px solid #C6C6C6;
   border-radius: 2px;
 }
 
 .gn-checkBoxRadio.gn-check .gn-checkmark::after {
   content: '';
   display: none;
-  position: relative;
-  left: 3px;
-  top: 0;
-  width: 6px;
-  height: 10px;
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
   border: solid #ffffff;
-  border-width: 0 2px 2px 0;
+  border-width: 0 1.5px 1.5px 0;
   transform: rotate(45deg);
 }
 
@@ -498,7 +601,7 @@ textarea.gn-form-control {
   display: block;
 }
 
-/* Danger border on checkmark */
+/* Danger state on checkbox/radio */
 .gn-has-danger .gn-checkBoxRadio .gn-checkmark {
   border-color: #ef4444;
 }
