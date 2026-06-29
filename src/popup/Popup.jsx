@@ -16,8 +16,11 @@ const Popup = (props) => {
   const header = props.isCustomTitle
     ? <div>{props.title}</div>
     : (
-      <div className="gn-modal__header gn-modal__header--primary">
-        <span>{props.title}</span>
+      <div className="gn-modal__header">
+        <div className="gn-modal__header-info">
+          <span className="gn-modal__title">{props.title}</span>
+          {props.subtitle && <span className="gn-modal__subtitle">{props.subtitle}</span>}
+        </div>
         <button className="gn-modal__close" onClick={() => props.close(0)}>×</button>
       </div>
     );
