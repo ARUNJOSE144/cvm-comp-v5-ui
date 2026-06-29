@@ -153,7 +153,7 @@ const FieldItem = (props) => {
             peekNextMonth showMonthDropdown showYearDropdown dropdownMode="select"
             isClearable selected={props.value}
             onChange={props.onChange} className="gn-form-control"
-            todayButton="Today" minDate={props.minDate} maxDate={props.maxDate}
+            minDate={props.minDate} maxDate={props.maxDate}
             excludeDates={props.excludeDates} placeholderText={props.placeholder}
             disabled={props.disabled} onBlur={onBlur}
             popperProps={{ strategy: 'fixed' }}
@@ -167,7 +167,7 @@ const FieldItem = (props) => {
             peekNextMonth showMonthDropdown showYearDropdown dropdownMode="select"
             isClearable selected={props.value}
             onChange={props.onChange} className="gn-form-control"
-            todayButton="Today" showTimeSelect timeFormat="HH:mm"
+            showTimeSelect timeFormat="HH:mm"
             timeIntervals={props.interval} excludeTimes={props.excludeTimes}
             minTime={props.minTime} maxTime={props.maxTime}
             minDate={props.minDate} maxDate={props.maxDate}

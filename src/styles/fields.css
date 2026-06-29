@@ -382,6 +382,333 @@ textarea.gn-form-control {
 }
 
 /* ════════════════════════════════════════════════════════════════════
+   Date-picker calendar popup — Figma design
+   Container: 260px, padding 20px 16px, radius 10px,
+              border #DCDCDC, shadow 0px 5px 20px rgba(0,0,0,0.2)
+   Month header: Poppins 700 12px #333333
+   Weekday labels: Poppins 500 12px #333333
+   Day cells: 24×20px, 34px column spacing, 5px row gap, #666666
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Popper positioner — no extra margin */
+.react-datepicker-popper {
+  padding: 0 !important;
+  z-index: 9999;
+}
+
+/* Hide the default tooltip arrow */
+.react-datepicker__triangle {
+  display: none !important;
+}
+
+/* ── Popup shell ──────────────────────────────────────────────────── */
+.react-datepicker {
+  font-family: 'Poppins', -apple-system, sans-serif !important;
+  background: #FFFFFF !important;
+  border: 1px solid #DCDCDC !important;
+  border-radius: 10px !important;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2) !important;
+  display: inline-block !important;
+  overflow: hidden !important;
+}
+
+/* Month container — sets the padding; float left so time floats right */
+.react-datepicker__month-container {
+  width: 260px !important;
+  padding: 20px 16px !important;
+  box-sizing: border-box !important;
+  float: left !important;
+  background: #FFFFFF !important;
+}
+
+/* ── Header (month selector + weekday row) ───────────────────────── */
+.react-datepicker__header {
+  background: #FFFFFF !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  text-align: left !important;
+  position: relative !important;
+}
+
+/* "June 2025" — hide when select dropdowns are used (they render below it) */
+.react-datepicker__current-month {
+  display: none !important;
+}
+
+/* Dropdown header row — this IS the visible month/year header */
+.react-datepicker__header__dropdown {
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 20px !important;
+  gap: 4px !important;
+  padding: 0 20px !important;
+}
+
+.react-datepicker__month-dropdown-container--select,
+.react-datepicker__year-dropdown-container--select {
+  margin: 0 !important;
+}
+
+.react-datepicker__month-select,
+.react-datepicker__year-select {
+  font-family: 'Poppins', -apple-system, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+  color: #333333 !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  padding: 0 2px !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* ── Navigation arrows — positioned beside the dropdown header ────── */
+.react-datepicker__navigation {
+  top: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  border: none !important;
+  background: none !important;
+  line-height: 1 !important;
+  overflow: visible !important;
+}
+
+.react-datepicker__navigation--previous {
+  left: 16px !important;
+}
+
+.react-datepicker__navigation--next {
+  right: 16px !important;
+}
+
+/* When time column is present, push the next arrow left of it */
+.react-datepicker__navigation--next--with-time {
+  right: 106px !important;
+}
+
+.react-datepicker__navigation-icon {
+  top: 0 !important;
+  width: 8px !important;
+  height: 8px !important;
+  font-size: 0 !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #333333 !important;
+  border-style: solid !important;
+  border-width: 1.5px 1.5px 0 0 !important;
+  width: 6px !important;
+  height: 6px !important;
+  top: 4px !important;
+}
+
+.react-datepicker__navigation-icon--previous {
+  right: 0 !important;
+}
+
+.react-datepicker__navigation-icon--previous::before {
+  transform: rotate(225deg) !important;
+  right: -2px !important;
+}
+
+.react-datepicker__navigation-icon--next::before {
+  transform: rotate(45deg) !important;
+  left: -2px !important;
+}
+
+/* ── Weekday header row (Mo Tu We Th Fr Sa Su) ───────────────────── */
+.react-datepicker__day-names {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin: 0 0 5px 0 !important;
+  padding: 0 !important;
+  background: #FFFFFF !important;
+}
+
+.react-datepicker__day-name {
+  font-family: 'Poppins', -apple-system, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  line-height: 20px !important;
+  color: #333333 !important;
+  width: 24px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+/* ── Calendar month grid ─────────────────────────────────────────── */
+.react-datepicker__month {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  background: #FFFFFF !important;
+}
+
+/* ── Week row ────────────────────────────────────────────────────── */
+.react-datepicker__week {
+  display: flex !important;
+  justify-content: space-between !important;
+  white-space: nowrap !important;
+}
+
+/* ── Day cell ────────────────────────────────────────────────────── */
+.react-datepicker__day {
+  font-family: 'Poppins', -apple-system, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  line-height: 20px !important;
+  color: #666666 !important;
+  width: 24px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: background-color 0.1s !important;
+  text-align: center !important;
+}
+
+.react-datepicker__day:hover:not(.react-datepicker__day--disabled) {
+  background-color: #F5F5F5 !important;
+  color: #333333 !important;
+}
+
+/* Today */
+.react-datepicker__day--today {
+  font-weight: 700 !important;
+  color: #2b7fff !important;
+  background-color: transparent !important;
+}
+
+/* Selected day */
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #2b7fff !important;
+  color: #FFFFFF !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--keyboard-selected:hover {
+  background-color: #1a6fe8 !important;
+  color: #FFFFFF !important;
+}
+
+/* Days from adjacent months */
+.react-datepicker__day--outside-month {
+  color: #DCDCDC !important;
+}
+
+/* Disabled days */
+.react-datepicker__day--disabled,
+.react-datepicker__day--disabled:hover {
+  color: #DCDCDC !important;
+  background-color: transparent !important;
+  cursor: not-allowed !important;
+}
+
+/* ── "Today" quick-select button ─────────────────────────────────── */
+.react-datepicker__today-button {
+  font-family: 'Poppins', -apple-system, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #2b7fff !important;
+  background: #FFFFFF !important;
+  border-top: 1px solid #DCDCDC !important;
+  padding: 8px 16px !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  clear: both !important;
+}
+
+.react-datepicker__today-button:hover {
+  background-color: #F5F5F5 !important;
+}
+
+/* ── Date-time picker — time list ────────────────────────────────── */
+.react-datepicker__time-container {
+  border-left: 1px solid #DCDCDC !important;
+  width: 90px !important;
+  float: right !important;
+}
+
+.react-datepicker__time-container .react-datepicker__time {
+  background: #FFFFFF !important;
+  border-radius: 0 !important;
+}
+
+.react-datepicker__time-container .react-datepicker__time-box {
+  width: 90px !important;
+  overflow-x: hidden !important;
+}
+
+.react-datepicker__time-container .react-datepicker__time-list {
+  height: 195px !important;
+  overflow-y: scroll !important;
+}
+
+.react-datepicker__time-list-item {
+  font-family: 'Poppins', -apple-system, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #666666 !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+.react-datepicker__time-list-item:hover {
+  background-color: #F5F5F5 !important;
+  color: #333333 !important;
+}
+
+.react-datepicker__time-list-item--selected {
+  background-color: #2b7fff !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+}
+
+.react-datepicker__time-list-item--selected:hover {
+  background-color: #1a6fe8 !important;
+}
+
+.react-datepicker__header--time {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #DCDCDC !important;
+  padding: 0 !important;
+  height: 58px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.react-datepicker-time__header {
+  font-family: 'Poppins', -apple-system, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+  color: #333333 !important;
+  text-overflow: clip !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════
    Search-box-icon widget
    ════════════════════════════════════════════════════════════════════ */
 .gn-select-modal {
