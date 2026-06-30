@@ -858,22 +858,18 @@ textarea.gn-form-control {
   overflow: auto;
 }
 
+/* Bordered container (used for Channel / Features fields) */
 .gn-checkBoxRadio_main.gn-rc-mandatory {
-  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  min-height: 34px;
+  padding: 6px 10px;
   border: 1px solid #DCDCDC;
-  padding-left: 12px;
+  border-radius: 4px;
   background-color: #ffffff;
-}
-
-.gn-checkBoxRadio_main.gn-rc-mandatory .gn-btn_container {
-  padding-top: 5px;
-  width: 20px;
-  height: 20px;
-}
-
-.gn-checkBoxRadio_main.gn-rc-mandatory .gn-checkBoxRadio {
-  padding: 4px 0;
-  margin-bottom: 0;
+  box-sizing: border-box;
 }
 
 .gn-checkBoxRadio_main.gn-rc-listed {
@@ -882,12 +878,20 @@ textarea.gn-form-control {
   padding-left: 0;
 }
 
+/* Each radio/checkbox item wrapper */
 .gn-checkBoxRadio_container {
-  overflow: auto;
+  overflow: visible;
 }
 
 .gn-checkBoxRadio_container.gn-cb-left {
   float: left;
+}
+
+/* Inside mandatory container, don't float — flex handles it */
+.gn-checkBoxRadio_main.gn-rc-mandatory .gn-checkBoxRadio_container {
+  float: none;
+  display: flex;
+  align-items: center;
 }
 
 .gn-checkBoxRadio_container.gn-cb-listed {
@@ -900,10 +904,21 @@ textarea.gn-form-control {
   background-color: #F5F5F5;
 }
 
+/* Disabled cursor on the whole item */
+.gn-checkBoxRadio_container.gn-cb-disabled {
+  cursor: not-allowed;
+}
+
 .gn-checkBoxRadio {
-  overflow: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   cursor: pointer;
   margin-bottom: 0;
+}
+
+.gn-checkBoxRadio_container.gn-cb-disabled .gn-checkBoxRadio {
+  cursor: not-allowed;
 }
 
 .gn-checkBoxRadio input {
@@ -912,42 +927,49 @@ textarea.gn-form-control {
   cursor: pointer;
 }
 
+/* Label text */
 .gn-checkBoxRadio_label {
-  float: left;
-  padding-right: 12px;
-  padding-top: 2px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   font-family: 'Poppins', -apple-system, sans-serif;
   line-height: 18px;
+  color: #6D6D6D;
+  white-space: nowrap;
 }
 
 .gn-checkBoxRadio_label.gn-checked_box {
-  color: #2b7fff;
-}
-
-.gn-checkBoxRadio_label.gn-nc_box {
+  font-weight: 500;
   color: #1D1D1D;
 }
 
-.gn-btn_container {
-  float: left;
-  width: 15px;
-  height: 15px;
-  position: relative;
+.gn-checkBoxRadio_label.gn-nc_box {
+  font-weight: 400;
+  color: #6D6D6D;
 }
 
-/* Radio */
+/* Disabled label */
+.gn-cb-disabled .gn-checkBoxRadio_label {
+  color: #999999 !important;
+}
+
+/* Button container (holds the hidden input + visible checkmark) */
+.gn-btn_container {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ── Radio ──────────────────────────────────────────────────────── */
 .gn-checkBoxRadio.gn-radio .gn-checkmark {
   position: absolute;
-  height: 15px;
-  width: 15px;
+  inset: 0;
   background-color: #ffffff;
-  border: 1.25px solid #C6C6C6;
+  border: 1px solid #DCDCDC;
   border-radius: 50%;
-  overflow: hidden;
 }
 
+/* Inner dot (shown when checked) */
 .gn-checkBoxRadio.gn-radio .gn-checkmark::after {
   content: '';
   display: none;
@@ -955,36 +977,51 @@ textarea.gn-form-control {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 7px;
-  height: 7px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background-color: #2b7fff;
+  background-color: #0099FF;
 }
 
 .gn-checkBoxRadio.gn-radio input:checked ~ .gn-checkmark {
-  border-color: #2b7fff;
+  border-color: #0099FF;
 }
 
 .gn-checkBoxRadio.gn-radio input:checked ~ .gn-checkmark::after {
   display: block;
 }
 
-/* Checkbox */
+/* Radio — disabled unselected */
+.gn-checkBoxRadio.gn-radio input:disabled ~ .gn-checkmark {
+  background-color: #EDEDED;
+  border-color: #DCDCDC;
+}
+
+/* Radio — disabled selected */
+.gn-checkBoxRadio.gn-radio input:disabled:checked ~ .gn-checkmark {
+  background-color: #ffffff;
+  border-color: #BBE1FB;
+}
+
+.gn-checkBoxRadio.gn-radio input:disabled:checked ~ .gn-checkmark::after {
+  background-color: #BBE1FB;
+}
+
+/* ── Checkbox ───────────────────────────────────────────────────── */
 .gn-checkBoxRadio.gn-check .gn-checkmark {
   position: absolute;
-  height: 15px;
-  width: 15px;
+  inset: 0;
   background-color: #ffffff;
-  border: 1.25px solid #C6C6C6;
-  border-radius: 2px;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
 }
 
 .gn-checkBoxRadio.gn-check .gn-checkmark::after {
   content: '';
   display: none;
   position: absolute;
-  left: 4px;
-  top: 1px;
+  left: 5px;
+  top: 2px;
   width: 5px;
   height: 9px;
   border: solid #ffffff;
@@ -993,12 +1030,23 @@ textarea.gn-form-control {
 }
 
 .gn-checkBoxRadio.gn-check input:checked ~ .gn-checkmark {
-  background-color: #2b7fff;
-  border-color: #2b7fff;
+  background-color: #0099FF;
+  border-color: #0099FF;
 }
 
 .gn-checkBoxRadio.gn-check input:checked ~ .gn-checkmark::after {
   display: block;
+}
+
+/* Checkbox — disabled */
+.gn-checkBoxRadio.gn-check input:disabled ~ .gn-checkmark {
+  background-color: #EDEDED;
+  border-color: #DCDCDC;
+}
+
+.gn-checkBoxRadio.gn-check input:disabled:checked ~ .gn-checkmark {
+  background-color: #BBE1FB;
+  border-color: #BBE1FB;
 }
 
 /* Danger state on checkbox/radio */

@@ -63,21 +63,25 @@ const FieldItem = (props) => {
       );
     };
     if (!props.values) return null;
-    return props.values.map((data, index) => (
-      <div className={`gn-checkBoxRadio_container${props.isListedInput ? ' gn-cb-listed' : ' gn-cb-left'}`} key={index}>
-        <label className="gn-checkBoxRadio gn-radio">
-          <div className="gn-btn_container">
-            <input
-              type="radio"
-              checked={!!(value && optionEq(value, data))}
-              onChange={() => props.onChange(data)}
-            />
-            <span className="gn-checkmark" />
-          </div>
-          {getLabel(optionEq(value, data), data.label)}
-        </label>
-      </div>
-    ));
+    return props.values.map((data, index) => {
+      const isDisabled = !!(props.disabled || data.disabled);
+      return (
+        <div className={`gn-checkBoxRadio_container${props.isListedInput ? ' gn-cb-listed' : ' gn-cb-left'}${isDisabled ? ' gn-cb-disabled' : ''}`} key={index}>
+          <label className="gn-checkBoxRadio gn-radio">
+            <div className="gn-btn_container">
+              <input
+                type="radio"
+                checked={!!(value && optionEq(value, data))}
+                onChange={() => !isDisabled && props.onChange(data)}
+                disabled={isDisabled}
+              />
+              <span className="gn-checkmark" />
+            </div>
+            {getLabel(optionEq(value, data), data.label)}
+          </label>
+        </div>
+      );
+    });
   };
 
   const getCheckBox = () => {
@@ -94,13 +98,22 @@ const FieldItem = (props) => {
     return props.values.map((data, index) => {
       const isChecked = props.value && props.value.some(item => item.value === data.value);
       return (
-        <div className={`gn-checkBoxRadio_container${props.isListedInput ? ' gn-cb-listed' : ' gn-cb-left'}`} key={index}>
+        <div className={`gn-checkBoxRadio_container${props.isListedInput ? ' gn-cb-listed' : ' gn-cb-left'}${props.disabled ? ' gn-cb-disabled' : ''}`} key={index}>
           <label className="gn-checkBoxRadio gn-check">
             <div className="gn-btn_container">
               <input
                 type="checkbox"
                 checked={!!isChecked}
-                onChange={() => props.onChange(data)}
+                onChange={() => {
+                  if (props.disabled) return;
+                  const current = Array.isArray(props.value) ? props.value : [];
+                  const exists = current.some(item => item.value === data.value);
+                  props.onChange(exists
+                    ? current.filter(item => item.value !== data.value)
+                    : [...current, data]
+                  );
+                }}
+                disabled={!!props.disabled}
               />
               <span className="gn-checkmark" />
             </div>
