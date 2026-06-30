@@ -1120,3 +1120,8 @@ textarea.gn-form-control {
 .gn-input-clear-btn:hover svg path {
   stroke: #8D8D8D;
 }
+
+.gn-input-clear-btn--textarea {
+  top: 10px;
+  transform: none;
+}

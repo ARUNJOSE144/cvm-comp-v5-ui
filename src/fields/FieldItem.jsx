@@ -346,14 +346,32 @@ const FieldItem = (props) => {
           </div>
         );
 
-      case FIELD_TYPES.TEXT_AREA:
+      case FIELD_TYPES.TEXT_AREA: {
+        const showTaClear = !!props.value && !props.disabled;
         return (
-          <textarea
-            value={props.value} placeholder={props.placeholder}
-            onChange={e => props.onChange ? props.onChange(e.target.value, {}, e) : null}
-            className="gn-form-control" disabled={!!props.disabled} onBlur={onBlur}
-          />
+          <div className="gn-input-clear-wrap">
+            <textarea
+              value={props.value} placeholder={props.placeholder}
+              onChange={e => props.onChange ? props.onChange(e.target.value, {}, e) : null}
+              className={showTaClear ? 'gn-form-control gn-form-control--has-clear' : 'gn-form-control'}
+              disabled={!!props.disabled} onBlur={onBlur}
+            />
+            {showTaClear && (
+              <button
+                type="button"
+                className="gn-input-clear-btn gn-input-clear-btn--textarea"
+                onMouseDown={e => { e.preventDefault(); props.onChange(''); }}
+                tabIndex={-1}
+                aria-label="Clear"
+              >
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 11.8256L11.7445 4M12 12L4.16488 4.0828" stroke="#C6C6C6" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            )}
+          </div>
         );
+      }
 
       case FIELD_TYPES.NESTED_DROP_DOWN: {
         const buildNested = (option) => {
