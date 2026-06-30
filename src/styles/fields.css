@@ -252,11 +252,9 @@ textarea.gn-form-control {
   color: #6D6D6D;
 }
 
-/* Separator between clear and caret — Figma: 1.25px #C6C6C6 */
+/* Separator hidden */
 .gn-select .GnSelect__indicator-separator {
-  background-color: #C6C6C6;
-  width: 1px;
-  margin: 8px 0;
+  display: none;
 }
 
 /* Disabled indicators */
@@ -991,4 +989,35 @@ textarea.gn-form-control {
 /* Danger state on checkbox/radio */
 .gn-has-danger .gn-checkBoxRadio .gn-checkmark {
   border-color: #ef4444;
+}
+
+/* ── Text field clear (×) button ────────────────────────────────── */
+.gn-input-clear-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.gn-input-clear-wrap .gn-form-control--has-clear {
+  padding-right: 30px;
+}
+
+.gn-input-clear-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.gn-input-clear-btn:hover svg path {
+  stroke: #8D8D8D;
 }
