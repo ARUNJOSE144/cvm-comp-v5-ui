@@ -25,6 +25,21 @@ function CustomMenuList({ children, selectProps, ...props }) {
   );
 }
 
+function MultiValueContainer({ children, getValue, ...props }) {
+  const selected = getValue();
+  if (selected.length > 3) {
+    // children array: [<MultiValue />, ..., <Input />] — keep only the last child (the hidden input)
+    const input = Array.isArray(children) ? children[children.length - 1] : null;
+    return (
+      <SelectComponents.ValueContainer {...props}>
+        <span className="gn-multi-summary">{selected.length} Items Selected</span>
+        {input}
+      </SelectComponents.ValueContainer>
+    );
+  }
+  return <SelectComponents.ValueContainer {...props}>{children}</SelectComponents.ValueContainer>;
+}
+
 function MultiOption({ isSelected, children, ...props }) {
   return (
     <SelectComponents.Option {...props} isSelected={isSelected}>
@@ -141,9 +156,10 @@ const FieldItem = (props) => {
             options={sortOptionsByLabel(props.values)}
             onChange={props.onChange}
             isMulti
+            hideSelectedOptions={false}
             isDisabled={props.disabled}
             onBlur={onBlur}
-            components={{ MenuList: CustomMenuList, Option: MultiOption }}
+            components={{ MenuList: CustomMenuList, Option: MultiOption, ValueContainer: MultiValueContainer }}
             menuPortalTarget={props.menuPortalTarget}
             menuPosition={props.menuPosition}
             styles={portalStyles}

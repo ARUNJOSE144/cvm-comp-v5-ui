@@ -286,6 +286,11 @@ textarea.gn-form-control {
   padding: 7px 10px;
   cursor: pointer;
   background-color: transparent;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.gn-select .GnSelect__option:last-child {
+  border-bottom: none;
 }
 
 .gn-select .GnSelect__option.GnSelect__option--is-focused {
@@ -320,44 +325,54 @@ textarea.gn-form-control {
   min-height: 34px;
   padding-top: 3px;
   padding-bottom: 3px;
-  gap: 2px;
+  gap: 4px;
 }
 
 .gn-select .GnSelect__multi-value {
   display: flex;
   align-items: center;
-  background-color: #EBF3FF;
-  border-radius: 2px;
-  height: 22px;
-  margin: 1px 2px 1px 0;
+  background: #EDEDED;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  height: 24px;
+  margin: 0;
 }
 
 .gn-select .GnSelect__multi-value__label {
   font-family: 'Poppins', -apple-system, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 400;
   line-height: 18px;
-  color: #2b7fff;
-  padding: 0 2px 0 6px;
+  color: #1D1D1D;
+  padding: 0 4px 0 10px;
 }
 
 .gn-select .GnSelect__multi-value__remove {
-  color: #2b7fff;
-  padding: 0 4px;
-  border-radius: 0 2px 2px 0;
+  color: #8D8D8D;
+  padding: 0 8px 0 2px;
+  border-radius: 0 4px 4px 0;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 
 .gn-select .GnSelect__multi-value__remove:hover {
-  background-color: #2b7fff;
-  color: #ffffff;
+  background-color: #DCDCDC;
+  color: #1D1D1D;
 }
 
 .gn-select .GnSelect__multi-value__remove svg {
   width: 12px;
   height: 12px;
+}
+
+/* "N Items Selected" summary (shown when > 3 values selected) */
+.gn-multi-summary {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #1D1D1D;
+  padding: 0 4px;
 }
 
 /* ── Multi-select control expands vertically when tags wrap ───────── */
@@ -1059,15 +1074,19 @@ textarea.gn-form-control {
 }
 
 .gn-option-label--checked {
-  color: #0099FF;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #1D1D1D;
 }
 
-.gn-select--multi .GnSelect__option--is-selected {
+.gn-select--multi .GnSelect__option.GnSelect__option--is-selected {
   background-color: transparent;
   color: #1D1D1D;
 }
 
-.gn-select--multi .GnSelect__option--is-selected.GnSelect__option--is-focused {
+.gn-select--multi .GnSelect__option.GnSelect__option--is-selected.GnSelect__option--is-focused {
   background-color: #F5F5F5;
 }
 
