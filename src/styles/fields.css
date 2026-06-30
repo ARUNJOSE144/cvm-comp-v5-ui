@@ -76,7 +76,7 @@
 }
 
 .gn-form-control:focus {
-  border-color: #2b7fff;
+  border-color: #6D6D6D;
 }
 
 /* ── Textarea ─────────────────────────────────────────────────────── */
@@ -171,7 +171,7 @@ textarea.gn-form-control {
 }
 
 .gn-select .GnSelect__control.GnSelect__control--is-focused {
-  border-color: #2b7fff;
+  border-color: #6D6D6D;
   box-shadow: none;
 }
 
@@ -989,6 +989,86 @@ textarea.gn-form-control {
 /* Danger state on checkbox/radio */
 .gn-has-danger .gn-checkBoxRadio .gn-checkmark {
   border-color: #ef4444;
+}
+
+/* ── Select: search input inside menu ───────────────────────────── */
+.gn-select-search {
+  display: flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.gn-select-search__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #1D1D1D;
+  background: transparent;
+}
+
+.gn-select-search__input::placeholder {
+  color: #AFAFAF;
+}
+
+.gn-select-search__shortcut {
+  font-size: 12px;
+  font-weight: 400;
+  color: #AFAFAF;
+  margin-left: 4px;
+}
+
+.gn-select-no-results {
+  font-size: 12px;
+  color: #AFAFAF;
+  padding: 7px 10px;
+}
+
+/* ── Multi-select: radio indicator per option ────────────────────── */
+.gn-select--multi .GnSelect__option {
+  display: flex;
+  align-items: center;
+}
+
+.gn-option-radio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid #C6C6C6;
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+
+.gn-option-radio--checked {
+  border-color: #0099FF;
+  background-color: #0099FF;
+}
+
+.gn-option-radio--checked::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
+}
+
+.gn-option-label--checked {
+  color: #0099FF;
+}
+
+.gn-select--multi .GnSelect__option--is-selected {
+  background-color: transparent;
+  color: #1D1D1D;
+}
+
+.gn-select--multi .GnSelect__option--is-selected.GnSelect__option--is-focused {
+  background-color: #F5F5F5;
 }
 
 /* ── Text field clear (×) button ────────────────────────────────── */

@@ -1,4 +1,4 @@
-import Select from 'react-select';
+import Select, { components as SelectComponents } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import DatePicker from 'react-datepicker';
 import FIELD_TYPES from './FieldTypes';
@@ -6,6 +6,33 @@ import { expandSelectValue, sortOptionsByLabel } from './utils';
 
 // Helper: compare two {value, label} option objects
 const optionEq = (a, b) => a?.value === b?.value;
+
+function CustomMenuList({ children, selectProps, ...props }) {
+  return (
+    <SelectComponents.MenuList {...props}>
+      <div className="gn-select-search">
+        <input
+          className="gn-select-search__input"
+          placeholder="Search menu"
+          value={selectProps.inputValue}
+          onChange={e => selectProps.onInputChange(e.target.value, { action: 'input-change' })}
+          onMouseDown={e => e.stopPropagation()}
+        />
+        <span className="gn-select-search__shortcut">/</span>
+      </div>
+      {children}
+    </SelectComponents.MenuList>
+  );
+}
+
+function MultiOption({ isSelected, children, ...props }) {
+  return (
+    <SelectComponents.Option {...props} isSelected={isSelected}>
+      <span className={`gn-option-radio${isSelected ? ' gn-option-radio--checked' : ''}`} />
+      <span className={isSelected ? 'gn-option-label--checked' : ''}>{children}</span>
+    </SelectComponents.Option>
+  );
+}
 
 const FieldItem = (props) => {
   const onBlur = () => {};
@@ -98,6 +125,7 @@ const FieldItem = (props) => {
             isDisabled={props.disabled}
             onBlur={onBlur}
             isClearable={props.isClearable ?? true}
+            components={{ MenuList: CustomMenuList }}
             menuPortalTarget={props.menuPortalTarget}
             menuPosition={props.menuPosition}
             styles={portalStyles}
@@ -107,7 +135,7 @@ const FieldItem = (props) => {
       case FIELD_TYPES.MUTLI_SELECT:
         return (
           <Select
-            className="gn-select" classNamePrefix="GnSelect"
+            className="gn-select gn-select--multi" classNamePrefix="GnSelect"
             placeholder={props.placeholder}
             value={expandSelectValue(props.value, props.values)}
             options={sortOptionsByLabel(props.values)}
@@ -115,6 +143,7 @@ const FieldItem = (props) => {
             isMulti
             isDisabled={props.disabled}
             onBlur={onBlur}
+            components={{ MenuList: CustomMenuList, Option: MultiOption }}
             menuPortalTarget={props.menuPortalTarget}
             menuPosition={props.menuPosition}
             styles={portalStyles}
