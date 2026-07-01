@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+const ANIM_DURATION = 280; // ms — must match CSS transition duration
 
 export default function Overlay({
   open = false,
@@ -11,26 +13,50 @@ export default function Overlay({
   cancelLabel  = 'Cancel',
   proceedLabel = 'Proceed',
   showFooter   = true,
+  width,
 }) {
-  // Lock body scroll while open
+  // `visible` keeps the DOM mounted during the exit animation
+  const [visible,  setVisible]  = useState(open);
+  // `animate` drives the CSS entering/leaving class
+  const [animate,  setAnimate]  = useState(false);
+
   useEffect(() => {
     if (open) {
+      setVisible(true);
+      // Double RAF: first frame mounts the element, second frame triggers the transition
+      let raf1, raf2;
+      raf1 = requestAnimationFrame(() => {
+        raf2 = requestAnimationFrame(() => setAnimate(true));
+      });
+      return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); };
+    } else {
+      setAnimate(false);
+      const t = setTimeout(() => setVisible(false), ANIM_DURATION);
+      return () => clearTimeout(t);
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (visible) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
     return () => { document.body.style.overflow = ''; };
-  }, [open]);
+  }, [visible]);
 
-  if (!open) return null;
+  if (!visible) return null;
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) onClose && onClose();
   };
 
+  const backdropCls = `gn-overlay__backdrop${animate ? ' gn-overlay__backdrop--in' : ''}`;
+  const panelCls    = `gn-overlay__panel${animate ? ' gn-overlay__panel--in' : ''}`;
+
   return (
-    <div className="gn-overlay__backdrop" onMouseDown={handleBackdropClick}>
-      <div className="gn-overlay__panel">
+    <div className={backdropCls} onMouseDown={handleBackdropClick}>
+      <div className={panelCls} style={width ? { width } : undefined}>
 
         {/* Header */}
         <div className="gn-overlay__header">
