@@ -3,6 +3,7 @@ import './src/styles/buttons.css';
 import './src/styles/modal.css';
 import './src/styles/toast.css';
 import './src/styles/toggle.css';
+import './src/styles/tabs.css';
 
 export { default as FieldItem }                              from './src/fields/FieldItem';
 export { default as FIELD_TYPES }                            from './src/fields/FieldTypes';
@@ -23,3 +24,5 @@ export { POPUP_ALIGN }                                       from './src/popup/P
 export { default as AppToaster, gnToast }                    from './src/toaster/AppToaster';
 
 export { default as ToggleSwitch }                           from './src/toggle/ToggleSwitch';
+
+export { default as Tabs }                                   from './src/tabs/Tabs';

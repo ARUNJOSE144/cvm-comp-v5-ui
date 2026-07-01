@@ -1,0 +1,89 @@
+/* ── Tabs ────────────────────────────────────────────────────────── */
+.gn-tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0;
+  width: 100%;
+  border-bottom: 1px solid #EDEDED;
+}
+
+/* Single tab */
+.gn-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 100px;
+  height: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #EDEDED;
+  background: #F9F9F9;
+  cursor: pointer;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: #6D6D6D;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  outline: none;
+  margin-bottom: -1px;
+}
+
+/* Hover */
+.gn-tab:hover:not(.gn-tab--active):not(.gn-tab--disabled) {
+  background: #F0F0F0;
+  border-bottom-color: #1D1D1D;
+  color: #1D1D1D;
+  font-weight: 600;
+}
+
+/* Active */
+.gn-tab--active {
+  background: #EBF6FA;
+  border-bottom: 2px solid #0099FF;
+  color: #0099FF;
+  font-weight: 600;
+}
+
+/* Disabled */
+.gn-tab--disabled {
+  background: #F9F9F9;
+  border-bottom-color: #EDEDED;
+  color: #C6C6C6;
+  cursor: not-allowed;
+}
+
+/* Icon inside tab */
+.gn-tab__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Count badge */
+.gn-tab__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: #0099FF;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.gn-tab--active .gn-tab__count {
+  background: #0099FF;
+}
+
+.gn-tab--disabled .gn-tab__count {
+  background: #C6C6C6;
+}
