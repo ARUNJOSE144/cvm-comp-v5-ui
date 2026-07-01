@@ -4,6 +4,7 @@ import './src/styles/modal.css';
 import './src/styles/toast.css';
 import './src/styles/toggle.css';
 import './src/styles/tabs.css';
+import './src/styles/overlay.css';
 
 export { default as FieldItem }                              from './src/fields/FieldItem';
 export { default as FIELD_TYPES }                            from './src/fields/FieldTypes';
@@ -26,3 +27,5 @@ export { default as AppToaster, gnToast }                    from './src/toaster
 export { default as ToggleSwitch }                           from './src/toggle/ToggleSwitch';
 
 export { default as Tabs }                                   from './src/tabs/Tabs';
+
+export { default as Overlay }                                from './src/overlay/Overlay';
