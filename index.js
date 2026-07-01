@@ -5,6 +5,7 @@ import './src/styles/toast.css';
 import './src/styles/toggle.css';
 import './src/styles/tabs.css';
 import './src/styles/overlay.css';
+import './src/styles/datatable.css';
 
 export { default as FieldItem }                              from './src/fields/FieldItem';
 export { default as FIELD_TYPES }                            from './src/fields/FieldTypes';
@@ -29,3 +30,5 @@ export { default as ToggleSwitch }                           from './src/toggle/
 export { default as Tabs }                                   from './src/tabs/Tabs';
 
 export { default as Overlay }                                from './src/overlay/Overlay';
+
+export { default as DataTable }                              from './src/datatable/DataTable';
