@@ -1,0 +1,63 @@
+/* ── Toggle Switch ───────────────────────────────────────────────── */
+.gn-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.gn-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Hide the native checkbox */
+.gn-toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Track — 40×20px, 5% insets = 1px */
+.gn-toggle__track {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: #DCDCDC;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Knob — 18×18px (5% of 40 = 2px from edge on left/right, 5% of 20 = 1px top/bottom) */
+.gn-toggle__knob {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border-radius: 10px;
+  transition: left 0.2s ease;
+}
+
+/* ON state */
+.gn-toggle__input:checked + .gn-toggle__track {
+  background: #0F7931;
+}
+
+.gn-toggle__input:checked + .gn-toggle__track .gn-toggle__knob {
+  left: 21px;
+}
+
+/* Label */
+.gn-toggle__label {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #1D1D1D;
+  line-height: 18px;
+}
